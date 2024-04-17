@@ -15,4 +15,68 @@
             <property name="lastName" value="Smith"/>
             <property name="email" value="john.smith@email.com"/>
         </bean>
+
+        <bean id="adminRole" class="com.itbulls.learnit.spring.core.ioc.di.Role">
+            <property name="roleName" value="ADMIN_ROLE"/>
+        </bean>
+
+        <bean id="adminUser" class="com.itbulls.learnit.spring.core.ioc.di.User">
+            <constructor-arg name="role" ref="adminRole"/>
+        </bean>
+
+        <bean id="adminUser2" class="com.itbulls.learnit.spring.core.ioc.di.User">
+            <constructor-arg index="0" ref="adminRole"/>
+        </bean>
+
+        <bean id="adminUser3" class="com.itbulls.learnit.spring.core.ioc.di.User">
+            <constructor-arg type="Role" ref="adminRole"/>
+        </bean>
+
+        <bean id="adminUser4" class="com.itbulls.learnit.spring.core.ioc.di.User">
+            <property name="role" ref="adminRole"/>
+        </bean>
+
+        <bean id="adminUser5" class="com.itbulls.learnit.spring.core.ioc.di.User" autowire="byType" lazy-init="true">
+        </bean>
+
+        <bean id="javaCollection" class="com.itbulls.learnit.spring.core.ioc.di.JavaCollectionInjectionDemo">
+
+            <property name="addressList">
+                <list>
+                    <value>France</value>
+                    <value>USA</value>
+                    <value>POLAND</value>
+                    <value>UK</value>
+                </list>
+            </property>
+
+            <property name="addressSet">
+                <set>
+                    <value>France</value>
+                    <value>USA</value>
+                    <value>POLAND</value>
+                    <value>UK</value>
+                </set>
+            </property>
+
+            <property name="addressMap">
+                <map>
+                    <entry key="1" value="France"/>
+                    <entry key="2" value="USA"/>
+                    <entry key="3" value="POLAND"/>
+                    <entry key="4" value="UK"/>
+                </map>
+            </property>
+
+            <property name="addressProp">
+                <props>
+                    <prop key="one">France</prop>
+                    <prop key="one">France</prop>
+                    <prop key="two">USA</prop>
+                    <prop key="three">POLAND</prop>
+                    <prop key="four">UK</prop>
+                </props>
+            </property>
+        </bean>
+
 </beans>
